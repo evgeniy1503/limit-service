@@ -1,10 +1,8 @@
 package ru.prokhorov.limitservice.dto;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.FieldDefaults;
-import ru.prokhorov.limitservice.entity.Operation;
+import ru.prokhorov.limitservice.entity.WriteDownEntry;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,12 +14,11 @@ import java.util.List;
  */
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class LimitResponse {
 
-    Long id;
+    private Long id;
 
-    BigDecimal amount;
+    private BigDecimal amount;
 
-    List<Operation> operations;
+    private List<WriteDownEntry> writeDownEntries;
 }

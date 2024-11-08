@@ -16,12 +16,11 @@ import java.math.BigDecimal;
  */
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class LimitRequest {
 
     @NotNull(message = "Поле не может быть пустым")
-    Long userId;
+    private Long userId;
 
     @DecimalMin(value = "0.0", inclusive = false, message = "Сумма не может быть отрицательной")
-    BigDecimal amount;
+    private BigDecimal amount;
 }

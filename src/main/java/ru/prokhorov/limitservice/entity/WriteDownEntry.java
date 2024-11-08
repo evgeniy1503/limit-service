@@ -12,11 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 import ru.prokhorov.limitservice.enums.Status;
 
 import java.math.BigDecimal;
@@ -30,28 +27,26 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
-@Table(name = "operations")
-public class Operation {
+@Table(name = "write_downs")
+public class WriteDownEntry {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "limit_id", nullable = false)
-    Limit limit;
+    private Limit limit;
 
     @Column(name = "amount", nullable = false)
-    BigDecimal amount;
+    private BigDecimal amount;
 
     @Column(name = "create_date")
-    Date createDate;
+    private Date createDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    Status status;
+    private Status status;
 }

@@ -7,12 +7,12 @@ import ru.prokhorov.limitservice.dto.LimitRequest;
  *
  * @author Evgeniy_Prokhorov
  */
-public interface OperationService {
+public interface LimitProcessor {
 
     /**
      * Обработка операций списания
      *
      * @param limitRequest ДТО для списания лимотов
      */
-    void processOperation(LimitRequest limitRequest);
+    void processWriteDownEntry(LimitRequest limitRequest);
 }

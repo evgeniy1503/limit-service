@@ -23,4 +23,9 @@ limit:
   scheduled:
     cron: "0 0 * * * *"
 
+logging:
+  enabled: true
+  level:
+    root: info
+
 

@@ -2,7 +2,7 @@ package ru.prokhorov.limitservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.prokhorov.limitservice.entity.Operation;
+import ru.prokhorov.limitservice.entity.WriteDownEntry;
 
 /**
  * Репозиторий для работы с Операциями.
@@ -10,5 +10,5 @@ import ru.prokhorov.limitservice.entity.Operation;
  * @author Evgeniy_Prokhorov
  */
 @Repository
-public interface OperationRepository extends JpaRepository<Operation, Long> {
+public interface WriteDownEntryRepository extends JpaRepository<WriteDownEntry, Long> {
 }

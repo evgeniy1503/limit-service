@@ -26,24 +26,22 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
-@NoArgsConstructor
 @Table(name = "limits")
 public class Limit {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(name = "user_id", nullable = false)
-    Long userId;
+    private Long userId;
 
     @Column(name = "amount", nullable = false)
-    BigDecimal amount;
+    private BigDecimal amount;
 
     @JsonIgnore
     @OneToMany(mappedBy = "limit")
-    List<Operation> operations;
+    private List<WriteDownEntry> writeDownEntries;
 }
 
