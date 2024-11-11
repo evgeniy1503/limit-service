@@ -39,9 +39,5 @@ public class Limit {
 
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "limit")
-    private List<WriteDownEntry> writeDownEntries;
 }
 

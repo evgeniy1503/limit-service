@@ -10,9 +10,16 @@ import ru.prokhorov.limitservice.dto.LimitRequest;
 public interface LimitProcessor {
 
     /**
-     * Обработка операций списания
+     * Снижение лимита
      *
-     * @param limitRequest ДТО для списания лимотов
+     * @param limitRequest ДТО для изменения лимита
      */
-    void processWriteDownEntry(LimitRequest limitRequest);
+    void lowersLimit(LimitRequest limitRequest);
+
+    /**
+     * Увеличение лимита
+     *
+     * @param limitRequest ДТО для изменения лимита
+     */
+    void increaseLimit(LimitRequest limitRequest);
 }

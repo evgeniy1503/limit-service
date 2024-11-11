@@ -20,7 +20,7 @@ import java.util.Objects;
  */
 @Aspect
 @Component
-@ConditionalOnProperty(name = "logging.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(name = "logging.enabled", havingValue = "true")
 public class LoggingAspect {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggingAspect.class);
 

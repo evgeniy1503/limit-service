@@ -4,17 +4,6 @@ CREATE TABLE limits (
     amount NUMERIC
 );
 
-CREATE TABLE write_downs (
-    id SERIAL PRIMARY KEY,
-    limit_id INT NOT NULL,
-    amount NUMERIC NOT NULL,
-    create_date TIMESTAMP NOT NULL,
-    status VARCHAR(20) NOT NULL
-);
-
-ALTER TABLE write_downs
-    ADD CONSTRAINT write_downs FOREIGN KEY (limit_id) REFERENCES limits(id);
-
 INSERT INTO limits (user_id, amount)
 VALUES
     (1, 10000),

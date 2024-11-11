@@ -4,17 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 /**
- * ДТО для отображения Лимитов.
+ * ДТО для обновления лимита.
  *
  * @author Evgeniy_Prokhorov
  */
 @Getter
 @Setter
-public class LimitResponse {
-    private Long id;
-
+public class LimitUpdateDto {
+    private Long userId;
     private BigDecimal amount;
 }

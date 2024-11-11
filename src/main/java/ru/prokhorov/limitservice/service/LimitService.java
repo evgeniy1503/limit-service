@@ -2,6 +2,7 @@ package ru.prokhorov.limitservice.service;
 
 import ru.prokhorov.limitservice.dto.LimitRequest;
 import ru.prokhorov.limitservice.dto.LimitResponse;
+import ru.prokhorov.limitservice.dto.LimitUpdateDto;
 import ru.prokhorov.limitservice.entity.Limit;
 
 import java.util.List;
@@ -21,13 +22,6 @@ public interface LimitService {
      */
     Limit createLimit(LimitRequest limitRequest);
 
-    /**
-     * Создание списка Лимитов
-     *
-     * @param requestList Список ДТО для создания Лимитов
-     */
-    void createLimits(List<LimitRequest> requestList);
-
 
     /**
      * Получить Лимит по идентификатору пользователя
@@ -45,9 +39,9 @@ public interface LimitService {
     /**
      * Обновление лимита
      *
-     * @param limitRequest ДТО для обновления лимита
-     * @return ДТО лимита
+     * @param limitUpdateDto ДТО для обновления лимита
+     *
      */
-    LimitResponse updateLimit(LimitRequest limitRequest);
+    void updateLimit(LimitUpdateDto limitUpdateDto);
 
 }

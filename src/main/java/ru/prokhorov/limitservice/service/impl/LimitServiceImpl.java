@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.prokhorov.limitservice.dto.LimitRequest;
 import ru.prokhorov.limitservice.dto.LimitResponse;
+import ru.prokhorov.limitservice.dto.LimitUpdateDto;
 import ru.prokhorov.limitservice.entity.Limit;
 import ru.prokhorov.limitservice.exception.EntityNotFoundException;
 import ru.prokhorov.limitservice.logging.annotations.Loggable;
@@ -38,17 +39,8 @@ public class LimitServiceImpl implements LimitService {
     @Override
     public Limit createLimit(LimitRequest limitRequest) {
         Limit limit = limitMapper.toEntity(limitRequest);
-        limit.setAmount(BigDecimal.valueOf(limitProperties.getSum()));
+        limit.setAmount(limitProperties.getSum());
         return limitRepository.save(limit);
-    }
-
-    @Loggable
-    @Transactional
-    @Override
-    public void createLimits(List<LimitRequest> requestList) {
-        List<Limit> limit = limitMapper.toEntity(requestList);
-        limit.forEach(l -> l.setAmount(BigDecimal.valueOf(limitProperties.getSum())));
-        limitRepository.saveAll(limit);
     }
 
     @Loggable
@@ -63,21 +55,19 @@ public class LimitServiceImpl implements LimitService {
     @Loggable
     @Transactional
     @Override
-    public LimitResponse updateLimit(LimitRequest limitRequest) {
+    public void updateLimit(LimitUpdateDto limitUpdate) {
         Limit limit = limitRepository
-                .getLimitByUserId(limitRequest.getUserId())
-                .orElseThrow(() -> new EntityNotFoundException("Не найдет лимит для пользователя с ID: " + limitRequest.getUserId()));
-        BigDecimal amount = limit.getAmount().subtract(limitRequest.getAmount());
-        limit.setAmount(amount);
-        Limit update = limitRepository.save(limit);
-        return limitMapper.toResponse(update);
+                .getLimitByUserId(limitUpdate.getUserId())
+                .orElseThrow(() -> new EntityNotFoundException("Не найдет лимит для пользователя с ID: " + limitUpdate.getUserId()));
+        limitMapper.updateEntity(limitUpdate, limit);
+        limitRepository.save(limit);
     }
 
     @Loggable
     @Scheduled(cron = "${limit.scheduled.cron}")
     @Override
     public void refreshAllLimit() {
-        limitRepository.updateLimit(BigDecimal.valueOf(limitProperties.getSum()));
+        limitRepository.updateLimit(limitProperties.getSum());
     }
 
 }

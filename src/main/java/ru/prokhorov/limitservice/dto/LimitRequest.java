@@ -21,6 +21,6 @@ public class LimitRequest {
     @NotNull(message = "Поле не может быть пустым")
     private Long userId;
 
-    @DecimalMin(value = "0.0", inclusive = false, message = "Сумма не может быть отрицательной")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Поле \"Сумма\" не может быть отрицательной")
     private BigDecimal amount;
 }

@@ -26,13 +26,19 @@ import ru.prokhorov.limitservice.service.LimitService;
 @RequiredArgsConstructor
 public class LimitController {
 
-    private final LimitProcessor writeDownEntryService;
+    private final LimitProcessor limitProcessor;
     private final LimitService limitService;
 
     @Loggable
-    @PostMapping
+    @PostMapping("/lower")
+    public void lowerLimit(@Valid @RequestBody LimitRequest request) {
+        limitProcessor.lowersLimit(request);
+    }
+
+    @Loggable
+    @PostMapping("/increase")
     public void changeLimit(@Valid @RequestBody LimitRequest request) {
-        writeDownEntryService.processWriteDownEntry(request);
+        limitProcessor.increaseLimit(request);
     }
 
     @Loggable
